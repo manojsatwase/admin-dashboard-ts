@@ -7,6 +7,7 @@ import ErrorComponent from "./pages/ErrorComponent";
 // Import Daynamic Route
 // by default react load all component
 
+const Home = lazy(()=> import('./pages/Home'));
 const Dashboard = lazy(()=>import("./pages/Dashboard"));
 const Products = lazy(()=> import("./pages/Products"))
 const Customers = lazy(()=> import("./pages/Customers"));
@@ -65,8 +66,13 @@ export const appRouter = createBrowserRouter([
     errorElement: <ErrorComponent error={error} />,
     children: [
       {
+          path:"/",
+          element: <LazyLoadingComponent component={Home} />
+      },
+      {
         element: <ProtectedRoute role="admin" />,
         children: [
+          
 
           {/*  Admin  */},
 
